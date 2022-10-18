@@ -1,6 +1,8 @@
 # gson-type-safe-adapter
 A type safe gson adapter.
 
+[![](https://jitpack.io/v/JingZhuanDuoYing/gson-type-safe-adapter.svg)](https://jitpack.io/#JingZhuanDuoYing/gson-type-safe-adapter)
+
 ## Introduction
 
 This library can help mismatch input types keep correct default value, never null.
