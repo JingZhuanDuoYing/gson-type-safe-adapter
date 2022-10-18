@@ -33,7 +33,7 @@ More details: see [TypeSafeTest](src/test/java/com/dieyidezui/gson/adapter/TypeS
 ### Step 1
 
 ```groovy
-implementation 'com.dieyidezui.gson:type-safe-adapter:1.0.1'
+implementation 'cn.jingzhuan.lib:gson-type-safe-adapter:1.0.1'
 ```
 
 ### Step 2
