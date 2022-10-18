@@ -18,4 +18,3 @@ obj
 #MacOS
 .DS_Store
 local.properties
-gradle.properties
