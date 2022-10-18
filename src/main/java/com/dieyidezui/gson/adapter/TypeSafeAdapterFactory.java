@@ -101,8 +101,9 @@ public class TypeSafeAdapterFactory implements TypeAdapterFactory {
                     gson.getAdapter(String.class));
         } else if (generalType instanceof GenericArrayType || generalType instanceof Class && ((Class<?>) generalType).isArray()) {
             return (TypeAdapter<T>) new SafeArrayAdapter(gson.getDelegateAdapter(this, type), $Gson$Types.getRawType($Gson$Types.getArrayComponentType(generalType)));
+        } else {
+            return (TypeAdapter<T>) new SafeObjectAdapter(gson.getDelegateAdapter(this, type));
         }
-        return null;
     }
 
 
@@ -293,6 +294,23 @@ public class TypeSafeAdapterFactory implements TypeAdapterFactory {
             } else {
                 in.skipValue();
                 return Array.newInstance(componentType, 0);
+            }
+        }
+    }
+
+    static class SafeObjectAdapter extends ForwardingAdapter<Object> {
+
+        SafeObjectAdapter(TypeAdapter<?> delegate) {
+            super(delegate);
+        }
+
+        @Override
+        public Object read(JsonReader in) throws IOException {
+            if (in.peek() == JsonToken.BEGIN_ARRAY) {
+                in.skipValue();
+                return null;
+            } else {
+                return super.read(in);
             }
         }
     }
