@@ -310,7 +310,12 @@ public class TypeSafeAdapterFactory implements TypeAdapterFactory {
                 in.skipValue();
                 return null;
             } else {
-                return super.read(in);
+                try {
+                    return super.read(in);
+                } catch (IOException e) {
+                    in.skipValue();
+                    return null;
+                }
             }
         }
     }
